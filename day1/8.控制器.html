@@ -5,27 +5,35 @@
     <title></title>
   </head>
   <body>
-    <div ng-controller="index" style="border:1px solid red">
-      {{ed(name)}}
-      <!-- 1 -->
-      <p ng-show="bool">显示或者隐藏</p>
-      <!-- 2 -->
-      <p ng-style="{display:(bool?'block':'none')}">显示或者隐藏</p>
-      <!-- 3 -->
-      <p style="{{isShow()}}">显示或者隐藏</p>
-      <button ng-click="bool=!bool">ok</button>
+    <div ng-controller="index">
+      <p style="color:red">1.表达式执行函数实现过滤器</p>
+      <p>{{ed(name)}}</p>
+
+      <p style="color:red">2.ng-show实现的三种方法</p>
+      <button ng-click="bool=!bool">点击OK实现效果</button>
+      <p style="color:blue">(1)表达式执行函数实现指令(ng-show)</p>
+      <p style="{{isShow()}}">显示或者隐藏 右键查看源代码</p>
+
+
+      <p style="color:blue">(2)ng-show</p>
+      <p ng-show="bool">显示或者隐藏 右键查看源代码</p>
+
+
+      <p style="color:blue">(3)ng-style</p>
+      <p ng-style="{display:(bool?'block':'none')}">显示或者隐藏 右键查看源代码</p>
     </div>
     <script src="../js/angular.js"></script>
     <script type="text/javascript">
       var app = angular.module("ngApp",[])
       app.controller("index",function($scope){
-        $scope.name = "qd"
+        $scope.name = "wscats"
         $scope.bool = true
+        // 模拟过滤器
         $scope.ed = function(str){
           console.log("1")
           return str+"ed"
         }
-        // react
+        // 类似react的思路
         $scope.isShow = function(){
           if($scope.bool){
             return "display:block"
@@ -35,7 +43,6 @@
 
         }
       })
-      console.log(app);
     </script>
   </body>
 </html>
