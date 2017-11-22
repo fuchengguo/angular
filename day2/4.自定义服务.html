@@ -6,10 +6,11 @@
   </head>
   <body ng-app="ngApp">
     <div ng-controller="indexCtrl">
+      <input ng-model="name" />
       <p>{{name}}</p>
     </div>
     <div ng-controller="homeCtrl">
-      <p>{{name}}</p>
+      <p>{{store.name}}</p>
     </div>
     <script src="../js/angular.js"></script>
     <script type="text/javascript">
@@ -36,14 +37,16 @@
         }
       })
       app.controller("indexCtrl",function($scope, store, $interval){
-        $scope.name = "qd"
+        $scope.$watch("name",function(){
+          store.name = $scope.name
+        })
         store.num = 1
         $interval(function(){
           console.log(store)
         },1000)
       })
       app.controller("homeCtrl",function($scope, store){
-        $scope.name = "gz"
+        $scope.store = store
         store.num = 3
         console.log(store)
       })
